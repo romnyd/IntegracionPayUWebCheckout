@@ -1,0 +1,8 @@
+c:\Users\Felipe\AsopagosPayU\bin\Debug\netcoreapp1.1\AsopagosPayU.deps.json
+c:\Users\Felipe\AsopagosPayU\bin\Debug\netcoreapp1.1\AsopagosPayU.runtimeconfig.json
+c:\Users\Felipe\AsopagosPayU\bin\Debug\netcoreapp1.1\AsopagosPayU.runtimeconfig.dev.json
+c:\Users\Felipe\AsopagosPayU\bin\Debug\netcoreapp1.1\AsopagosPayU.dll
+c:\Users\Felipe\AsopagosPayU\bin\Debug\netcoreapp1.1\AsopagosPayU.pdb
+c:\Users\Felipe\AsopagosPayU\obj\Debug\netcoreapp1.1\AsopagosPayU.AssemblyInfo.cs
+c:\Users\Felipe\AsopagosPayU\obj\Debug\netcoreapp1.1\AsopagosPayU.dll
+c:\Users\Felipe\AsopagosPayU\obj\Debug\netcoreapp1.1\AsopagosPayU.pdb
