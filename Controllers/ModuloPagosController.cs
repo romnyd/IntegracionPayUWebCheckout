@@ -8,12 +8,14 @@ namespace AsopagosPayU.Controllers
     public class ModuloPagosController : Controller
     {
         [HttpPost]
-        public IActionResult Create(DatosTransaccionPayU data)
+        [RouteAttribute("EnviarDatosPago")]
+        public IActionResult RecibirDataAplicativo(DatosTransaccionPayU data)
         {
             if (data == null) return BadRequest();          
             
             data.ApiLogin = DatosCuentaPayU.ApiLogin;            
-            data.accountId = DatosCuentaPayU.AccountId;         
+            data.accountId = DatosCuentaPayU.AccountId;   
+            data.merchantId = DatosCuentaPayU.MerchantId;                  
 
             data.test = true;
 
@@ -21,5 +23,28 @@ namespace AsopagosPayU.Controllers
 
             return View("ConfirmarPago", data);
         }
+
+
+        [HttpGet]
+        [RouteAttribute("ResponsePagePayU")]
+        public IActionResult RecibirRespuestaPayU(DatosRespuestaPayU data)
+        {
+            var holamundo = data.TX_VALUE;
+
+            return Ok();
+        }    
+
+        [HttpPost]
+        [RouteAttribute("ConfirmationPagePayU")]
+        public IActionResult RecibirConfirmacionPayU(DatosRespuestaPayU data)
+        {
+            var holamundo = data.TX_VALUE;
+
+            return Ok();
+        }    
+
+
+
+
     }
 }

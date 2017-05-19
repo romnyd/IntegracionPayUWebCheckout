@@ -1,25 +1,24 @@
-@model AsopagosPayU.Models.PayUBase
+@model AsopagosPayU.Models.DatosTransaccionPayU
 
 @Model.merchantId
 @Model.Key
 @Model.referenceCode
 @Model.description
 
-
- <form method="post" action="https://sandbox.gateway.payulatam.com/ppp-web-gateway/">
-  <input name="merchantId"    type="hidden"  value=@Model.merchantId   >
-  <input name="accountId"     type="hidden"  value=@Model.accountId >
-  <input name="description"   type="hidden"  value=@Model.description  >
-  <input name="referenceCode" type="hidden"  value=@Model.referenceCode >
-  <input name="amount"        type="hidden"  value=@Model.amount  >
-  <input name="tax"           type="hidden"  value=@Model.tax >
-  <input name="taxReturnBase" type="hidden"  value=@Model.taxReturnBase >
-  <input name="currency"      type="hidden"  value=@Model.currency >
-<input name="algorithmSignature"    type="hidden"   value="SHA256" >
-  <input name="signature"     type="hidden"  value=@Model.signature  >  
-  <input name="test"          type="hidden"  value=@Model.test >
-  <input name="buyerEmail"    type="hidden"  value=@Model.buyerEmail >
-  <input name="responseUrl"    type="hidden"  value="http://www.test.com/response" >
-  <input name="confirmationUrl"    type="hidden"  value="http://www.test.com/confirmation" >
-  <input name="Submit"        type="submit"  value="Botón de Pago" >
+<form method="post" action="https://sandbox.gateway.payulatam.com/ppp-web-gateway/">
+    <input name="merchantId"    type="hidden"  value=@Model.merchantId   >
+    <input name="accountId"     type="hidden"  value=@Model.accountId >
+    <input name="description"   type="hidden"  value=@Model.description  >
+    <input name="referenceCode" type="hidden"  value=@Model.referenceCode >
+    <input name="amount"        type="hidden"  value=@Model.amount  >
+    <input name="tax"           type="hidden"  value=@Model.tax >
+    <input name="taxReturnBase" type="hidden"  value=@Model.taxReturnBase >
+    <input name="currency"      type="hidden"  value=@Model.currency >
+    <input name="algorithmSignature"    type="hidden"   value="SHA256" >
+    <input name="signature"     type="hidden"  value=@Model.signature  >  
+    <input name="test"          type="hidden"  value=@Model.test >
+    <input name="buyerEmail"    type="hidden"  value=@Model.buyerEmail >
+    <input name="responseUrl"    type="hidden"  value="http://localhost:5500/api/ModuloPagos/ResponsePagePayU" >
+    <input name="confirmationUrl"    type="hidden"  value="http://localhost:5500/api/ModuloPagos/ConfirmationPagePayU" >
+    <input name="Submit"        type="submit"  value="Botón de Pago" >
 </form>
