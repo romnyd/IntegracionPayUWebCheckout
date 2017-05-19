@@ -1,4 +1,4 @@
-using AsopagosPayU.Infraestructure;
+using AsopagosPayU.Infraestructura;
 using AsopagosPayU.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,18 +8,16 @@ namespace AsopagosPayU.Controllers
     public class ModuloPagosController : Controller
     {
         [HttpPost]
-        public IActionResult Create(PayUBase data)
+        public IActionResult Create(DatosTransaccionPayU data)
         {
             if (data == null) return BadRequest();          
-
-            data.merchantId = AccountData.MerchantId;
-            data.ApiLogin = AccountData.ApiLogin;
-            data.ApiKey = AccountData.ApiKey;
-            data.accountId = AccountData.AccountId;         
+            
+            data.ApiLogin = DatosCuentaPayU.ApiLogin;            
+            data.accountId = DatosCuentaPayU.AccountId;         
 
             data.test = true;
 
-            data.signature = EncryptionFunctions.GenerateHash($"{AccountData.ApiKey}~{AccountData.MerchantId}~{data.referenceCode}~{data.amount}~{data.currency}");   
+            data.signature = FuncionesEncripcion.GenerarFirmaHashSHA256($"{DatosCuentaPayU.ApiKey}~{DatosCuentaPayU.MerchantId}~{data.referenceCode}~{data.amount}~{data.currency}");   
 
             return View("ConfirmarPago", data);
         }

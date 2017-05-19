@@ -1,6 +1,7 @@
 namespace AsopagosPayU.Models
 {
-    public static class AccountData
+    public static class DatosCuentaPayU
+
     {
         public static int MerchantId { get; set; }
         public static string ApiLogin { get; set; }
@@ -8,7 +9,7 @@ namespace AsopagosPayU.Models
         public static int AccountId { get; set; }
         public static string Country { get; set; }
 
-        static AccountData()
+        static DatosCuentaPayU()        
         {
             MerchantId = 508029;
             ApiLogin = "pRRXKOl8ikMmt9u";
