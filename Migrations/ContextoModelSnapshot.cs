@@ -20,9 +20,11 @@ namespace AsopagosPayU.Migrations
                     b.Property<int>("AplicativoId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("AplicativoApiKey");
+                    b.Property<string>("AplicativoApiKey")
+                        .HasMaxLength(64);
 
-                    b.Property<string>("AplicativoUrl");
+                    b.Property<string>("AplicativoUrl")
+                        .HasMaxLength(512);
 
                     b.HasKey("AplicativoId");
 
@@ -34,13 +36,17 @@ namespace AsopagosPayU.Migrations
                     b.Property<int>("ClienteId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ClienteDireccionPrincipal");
+                    b.Property<string>("ClienteDireccionPrincipal")
+                        .HasMaxLength(512);
 
-                    b.Property<string>("ClienteEmail");
+                    b.Property<string>("ClienteEmail")
+                        .HasMaxLength(256);
 
-                    b.Property<string>("ClienteNombre");
+                    b.Property<string>("ClienteNombre")
+                        .HasMaxLength(128);
 
-                    b.Property<string>("ClienteTelefono");
+                    b.Property<string>("ClienteTelefono")
+                        .HasMaxLength(16);
 
                     b.HasKey("ClienteId");
 
@@ -54,23 +60,35 @@ namespace AsopagosPayU.Migrations
 
                     b.Property<int>("AplicativoId");
 
-                    b.Property<string>("Ciudad");
+                    b.Property<string>("Ciudad")
+                        .HasMaxLength(64);
 
                     b.Property<int>("ClienteId");
 
-                    b.Property<string>("CodigoReferencia");
+                    b.Property<string>("CodigoReferencia")
+                        .HasMaxLength(64);
 
-                    b.Property<string>("Descripcion");
+                    b.Property<string>("Descripcion")
+                        .HasMaxLength(512);
 
-                    b.Property<string>("Moneda");
+                    b.Property<string>("EstadoTransaccion")
+                        .HasMaxLength(32);
 
-                    b.Property<string>("Pais");
+                    b.Property<string>("MedioDePago")
+                        .HasMaxLength(32);
 
-                    b.Property<string>("PayUTransactionId");
+                    b.Property<string>("Moneda")
+                        .HasMaxLength(4);
 
-                    b.Property<decimal>("PorcentajeImpuesto");
+                    b.Property<string>("Pais")
+                        .HasMaxLength(4);
 
-                    b.Property<decimal>("ValorImpuesto");
+                    b.Property<string>("PayUTransaccionId")
+                        .HasMaxLength(64);
+
+                    b.Property<decimal?>("PorcentajeImpuesto");
+
+                    b.Property<decimal?>("ValorImpuesto");
 
                     b.Property<decimal>("ValorVenta");
 

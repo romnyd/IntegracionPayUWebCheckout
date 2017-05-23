@@ -1,6 +1,6 @@
 namespace AsopagosPayU.Models
 {
-    public class DatosTransaccionPayU
+    public class DatosEnvioPayU
     {
         public string Key { get; set; }
         public int merchantId { get; set; }

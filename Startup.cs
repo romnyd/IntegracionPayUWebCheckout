@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AsopagosPayU.Models;
+using AsopagosPayU.Repositories;
+using AsopagosPayU.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -27,8 +31,15 @@ namespace AsopagosPayU
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<Contexto>(x => x.UseMySql("server=localhost;database=ASOPAGOSPAYU;uid=root;pwd=123456"));
             // Add framework services.
             services.AddMvc();
+
+            // Registro de Servicios/Repositorios para el IOC. Si el proyecto crece y se necesitan muchas más clases, usar AUTOFAC y registrar estos servicios en una clase aparte. Documentación: http://docs.autofac.org/en/latest/integration/aspnetcore.html 
+            services.AddTransient<IServicioCliente, ServicioCliente>();
+            services.AddTransient<IRepositorioCliente, RepositorioCliente>();
+            services.AddTransient<IServicioTransaccion, ServicioTransaccion>();
+            services.AddTransient<IRepositorioTransaccion, RepositorioTransaccion>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

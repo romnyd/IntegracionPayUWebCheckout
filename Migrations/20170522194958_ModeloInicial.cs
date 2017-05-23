@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AsopagosPayU.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class ModeloInicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,9 +13,9 @@ namespace AsopagosPayU.Migrations
                 columns: table => new
                 {
                     AplicativoId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    AplicativoApiKey = table.Column<string>(nullable: true),
-                    AplicativoUrl = table.Column<string>(nullable: true)
+                        .Annotation("MySql:ValueGeneratedOnAdd", true),
+                    AplicativoApiKey = table.Column<string>(maxLength: 64, nullable: true),
+                    AplicativoUrl = table.Column<string>(maxLength: 512, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -27,11 +27,11 @@ namespace AsopagosPayU.Migrations
                 columns: table => new
                 {
                     ClienteId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    ClienteDireccionPrincipal = table.Column<string>(nullable: true),
-                    ClienteEmail = table.Column<string>(nullable: true),
-                    ClienteNombre = table.Column<string>(nullable: true),
-                    ClienteTelefono = table.Column<string>(nullable: true)
+                        .Annotation("MySql:ValueGeneratedOnAdd", true),
+                    ClienteDireccionPrincipal = table.Column<string>(maxLength: 512, nullable: true),
+                    ClienteEmail = table.Column<string>(maxLength: 256, nullable: true),
+                    ClienteNombre = table.Column<string>(maxLength: 128, nullable: true),
+                    ClienteTelefono = table.Column<string>(maxLength: 16, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -43,17 +43,19 @@ namespace AsopagosPayU.Migrations
                 columns: table => new
                 {
                     TransaccionId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySql:ValueGeneratedOnAdd", true),
                     AplicativoId = table.Column<int>(nullable: false),
-                    Ciudad = table.Column<string>(nullable: true),
+                    Ciudad = table.Column<string>(maxLength: 64, nullable: true),
                     ClienteId = table.Column<int>(nullable: false),
-                    CodigoReferencia = table.Column<string>(nullable: true),
-                    Descripcion = table.Column<string>(nullable: true),
-                    Moneda = table.Column<string>(nullable: true),
-                    Pais = table.Column<string>(nullable: true),
-                    PayUTransactionId = table.Column<string>(nullable: true),
-                    PorcentajeImpuesto = table.Column<decimal>(nullable: false),
-                    ValorImpuesto = table.Column<decimal>(nullable: false),
+                    CodigoReferencia = table.Column<string>(maxLength: 64, nullable: true),
+                    Descripcion = table.Column<string>(maxLength: 512, nullable: true),
+                    EstadoTransaccion = table.Column<string>(maxLength: 32, nullable: true),
+                    MedioDePago = table.Column<string>(maxLength: 32, nullable: true),
+                    Moneda = table.Column<string>(maxLength: 4, nullable: true),
+                    Pais = table.Column<string>(maxLength: 4, nullable: true),
+                    PayUTransaccionId = table.Column<string>(maxLength: 64, nullable: true),
+                    PorcentajeImpuesto = table.Column<decimal>(nullable: true),
+                    ValorImpuesto = table.Column<decimal>(nullable: true),
                     ValorVenta = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
