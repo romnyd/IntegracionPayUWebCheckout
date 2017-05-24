@@ -4,6 +4,7 @@ namespace AsopagosPayU.Services
 {
     public interface IServicioCliente
     {
-        bool AgregarCliente(Cliente cliente);
+        int AgregarCliente(Cliente cliente);
+        int ObtenerClienteId(DatosEnvioPayU data);
     }
 }

@@ -20,6 +20,11 @@ namespace AsopagosPayU.Models
         public string telephone { get; set; }
         public string ApiKey { get; set; }
         public string ApiLogin { get; set; }
+        public int asopagosAppId { get; set; }
+        public string asopagosSignature { get; set; }
         public bool test { get; set; }
+        public string extra1 { get; set; }
+        public string extra2 { get; set; }
+        public string extra3 { get; set; }
     }
 }

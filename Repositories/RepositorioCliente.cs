@@ -1,5 +1,7 @@
 using System;
+using System.Linq;
 using AsopagosPayU.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AsopagosPayU.Repositories
 {
@@ -12,10 +14,21 @@ namespace AsopagosPayU.Repositories
             _dbContext = context;
         }
 
-        bool IRepositorioCliente.AgregarCliente(Cliente cliente)
+        public int AgregarCliente(Cliente cliente)
         {
             _dbContext.Add(cliente);
-            return _dbContext.SaveChanges() > 0;            
+            _dbContext.SaveChanges();
+            return cliente.ClienteId;        
+        }
+
+        public int ObtenerClienteIdPorEmail(string buyerEmail)
+        {
+            var cliente = _dbContext.Set<Cliente>()
+                            .AsNoTracking()
+                            .Where(x => x.ClienteEmail == buyerEmail)
+                            .FirstOrDefault();
+
+            return cliente != null ? cliente.ClienteId : 0;
         }
     }
 }

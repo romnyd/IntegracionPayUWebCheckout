@@ -13,7 +13,10 @@ namespace AsopagosPayU.Models
     {
         public DbSet<Aplicativo> Aplicativos { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
+
+
         public DbSet<Transaccion> Transacciones { get; set; }
+        public DbSet<DatosCuentaPayU> DatosCuenta { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //TODO traer la cadena de conexión desde appsettings.json

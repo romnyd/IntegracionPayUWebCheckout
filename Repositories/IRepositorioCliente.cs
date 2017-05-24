@@ -4,6 +4,7 @@ namespace AsopagosPayU.Repositories
 {
     public interface IRepositorioCliente
     {
-        bool AgregarCliente(Cliente cliente);
+        int AgregarCliente(Cliente cliente);
+        int ObtenerClienteIdPorEmail(string buyerEmail);
     }
 }

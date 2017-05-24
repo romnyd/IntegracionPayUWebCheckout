@@ -1,0 +1,31 @@
+@model AsopagosPayU.Models.DatosRespuestaPayU
+
+
+<div class="clearfix"></div>
+         <div class="jumbotron">
+  <h1>Gracias por usar nuestros servicios</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mattis faucibus leo id bibendum. Morbi orci lacus, porttitor sed erat et, congue varius nibh. </p>
+</div>
+
+<table class="table table-bordered table-striped">
+   <tr>
+       <td ><strong> Estado de la transaccion</strong></td>
+       <td>@ViewBag.EstadoTransaccion</td>
+   </tr>
+ <tr>
+       <td><strong> Id de la transacción</strong></td>
+       <td>@Model.transactionId</td>
+ </tr>
+ <tr>
+       <td><strong> Medio de Pago</strong></td>
+       <td>@Model.lapPaymentMethod</td>
+   </tr>  
+   
+  </table>
+
+
+  <div class="text-center"> 
+    <form method="post" action="https://sandbox.gateway.payulatam.com/ppp-web-gateway/">    
+        <input name="Submit"        type="submit"   value="Terminar" class="btn btn-success center" >    
+    </form>
+</div>

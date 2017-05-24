@@ -20,11 +20,18 @@ namespace AsopagosPayU.Migrations
                     b.Property<int>("AplicativoId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("AplicativoAbreviatura")
+                        .HasMaxLength(2);
+
                     b.Property<string>("AplicativoApiKey")
                         .HasMaxLength(64);
 
+                    b.Property<string>("AplicativoNombre");
+
                     b.Property<string>("AplicativoUrl")
                         .HasMaxLength(512);
+
+                    b.Property<string>("Descripcion");
 
                     b.HasKey("AplicativoId");
 
@@ -36,6 +43,9 @@ namespace AsopagosPayU.Migrations
                     b.Property<int>("ClienteId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("ClienteCiudad")
+                        .HasMaxLength(64);
+
                     b.Property<string>("ClienteDireccionPrincipal")
                         .HasMaxLength(512);
 
@@ -45,12 +55,39 @@ namespace AsopagosPayU.Migrations
                     b.Property<string>("ClienteNombre")
                         .HasMaxLength(128);
 
+                    b.Property<string>("ClientePais")
+                        .HasMaxLength(4);
+
                     b.Property<string>("ClienteTelefono")
                         .HasMaxLength(16);
 
                     b.HasKey("ClienteId");
 
                     b.ToTable("Clientes");
+                });
+
+            modelBuilder.Entity("AsopagosPayU.Models.DatosCuentaPayU", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AccountId");
+
+                    b.Property<string>("ApiKey");
+
+                    b.Property<string>("ApiLogin");
+
+                    b.Property<string>("Country");
+
+                    b.Property<int>("MerchantId");
+
+                    b.Property<string>("NombreCuenta");
+
+                    b.Property<bool>("Test");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DatosCuenta");
                 });
 
             modelBuilder.Entity("AsopagosPayU.Models.Transaccion", b =>

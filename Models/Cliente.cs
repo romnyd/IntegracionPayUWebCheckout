@@ -19,6 +19,12 @@ namespace AsopagosPayU.Models
         [MaxLengthAttribute(512)] 
         public string ClienteDireccionPrincipal { get; set; }
 
+        [MaxLengthAttribute(64)]
+        public string ClienteCiudad { get; set; }
+        
+        [MaxLengthAttribute(4)]
+        public string ClientePais { get; set; }
+
         [MaxLengthAttribute(16)] 
         public string ClienteTelefono { get; set; }
         

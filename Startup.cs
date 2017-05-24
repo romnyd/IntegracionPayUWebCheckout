@@ -40,6 +40,8 @@ namespace AsopagosPayU
             services.AddTransient<IRepositorioCliente, RepositorioCliente>();
             services.AddTransient<IServicioTransaccion, ServicioTransaccion>();
             services.AddTransient<IRepositorioTransaccion, RepositorioTransaccion>();
+            services.AddTransient<IServicioAplicativo, ServicioAplicativo>();
+            services.AddTransient<IRepositorioAplicativo, RepositorioAplicativo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
