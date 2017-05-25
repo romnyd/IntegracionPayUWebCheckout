@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -46,6 +47,7 @@ namespace AsopagosPayU.Models
         [ForeignKeyAttribute("Cliente_FK")]
         public int ClienteId { get; set; }        
         public Cliente Cliente { get; set; }
+        public DateTime FechaTransaccion { get; set; }
     }
 
 }
