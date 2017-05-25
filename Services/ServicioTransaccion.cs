@@ -16,14 +16,20 @@ namespace AsopagosPayU.Services
             _repositorioCliente = repositorioCliente;
         }
 
-        public void ActualizarEstadoTransaccion(DatosRespuestaPayU data)
+        public void ActualizarEstadoTransaccion(int idTransaccion, string medioDePago, string payUidTransaccion, string estadoTransaccion)
         {
-            int idTransaccion = Int32.Parse(data.extra3);
+            // int idTransaccion = Int32.Parse(data.extra3);
+            // Transaccion transaccion = _repositorioTransaccion.ObtenerTransacionPorId(idTransaccion);
+
+            // transaccion.MedioDePago = data.lapPaymentMethod;
+            // transaccion.PayUTransaccionId = data.transactionId;
+            // transaccion.EstadoTransaccion = data.lapResponseCode;
+            
             Transaccion transaccion = _repositorioTransaccion.ObtenerTransacionPorId(idTransaccion);
 
-            transaccion.MedioDePago = data.lapPaymentMethod;
-            transaccion.PayUTransaccionId = data.transactionId;
-            transaccion.EstadoTransaccion = data.lapResponseCode;
+            transaccion.MedioDePago = medioDePago;
+            transaccion.PayUTransaccionId = payUidTransaccion;
+            transaccion.EstadoTransaccion = estadoTransaccion;               
 
             _repositorioTransaccion.ActualizarTransaccion(transaccion);            
         }
@@ -84,8 +90,14 @@ namespace AsopagosPayU.Services
         {
             var newValue = Math.Round(data.TX_VALUE, 1);
             var firma = $"{apiKey}~{data.merchantId}~{data.referenceCode}~{newValue}~{data.currency}~{data.transactionState}";
-            return data.signature == FuncionesEncripcion.GenerarFirmaHashSHA256(firma);           
-            
+            return data.signature == FuncionesEncripcion.GenerarFirmaHashSHA256(firma);                       
+        }
+
+        public bool VerificarFirmaPayUConfirmacion(DatosConfirmacionPayU data, string apiKey)
+        {
+            var newValue = Math.Round(data.value, 1);
+            var firma = $"{apiKey}~{data.merchant_id}~{data.reference_sale}~{newValue}~{data.currency}~{data.state_pol}";
+            return data.sign == FuncionesEncripcion.GenerarFirmaHashSHA256(firma);           
         }
     }
 }

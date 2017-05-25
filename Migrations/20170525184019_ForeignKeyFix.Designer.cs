@@ -8,8 +8,8 @@ using AsopagosPayU.Models;
 namespace AsopagosPayU.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20170525145406_AgregarColumnaFecha")]
-    partial class AgregarColumnaFecha
+    [Migration("20170525184019_ForeignKeyFix")]
+    partial class ForeignKeyFix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -112,7 +112,7 @@ namespace AsopagosPayU.Migrations
                     b.Property<string>("EstadoTransaccion")
                         .HasMaxLength(32);
 
-                    b.Property<DateTime>("FechaTransaccion");
+                    b.Property<DateTime?>("FechaTransaccion");
 
                     b.Property<string>("MedioDePago")
                         .HasMaxLength(32);
@@ -126,11 +126,14 @@ namespace AsopagosPayU.Migrations
                     b.Property<string>("PayUTransaccionId")
                         .HasMaxLength(64);
 
-                    b.Property<decimal?>("PorcentajeImpuesto");
+                    b.Property<decimal?>("PorcentajeImpuesto")
+                        .HasColumnType("decimal(18, 2)");
 
-                    b.Property<decimal?>("ValorImpuesto");
+                    b.Property<decimal?>("ValorImpuesto")
+                        .HasColumnType("decimal(18, 2)");
 
-                    b.Property<decimal>("ValorVenta");
+                    b.Property<decimal>("ValorVenta")
+                        .HasColumnType("decimal(18, 2)");
 
                     b.HasKey("TransaccionId");
 

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AsopagosPayU.Migrations
 {
-    public partial class CreacionModelo : Migration
+    public partial class CreacionModeloInicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,9 +31,11 @@ namespace AsopagosPayU.Migrations
                 {
                     ClienteId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGeneratedOnAdd", true),
+                    ClienteCiudad = table.Column<string>(maxLength: 64, nullable: true),
                     ClienteDireccionPrincipal = table.Column<string>(maxLength: 512, nullable: true),
                     ClienteEmail = table.Column<string>(maxLength: 256, nullable: true),
                     ClienteNombre = table.Column<string>(maxLength: 128, nullable: true),
+                    ClientePais = table.Column<string>(maxLength: 4, nullable: true),
                     ClienteTelefono = table.Column<string>(maxLength: 16, nullable: true)
                 },
                 constraints: table =>
@@ -45,18 +47,19 @@ namespace AsopagosPayU.Migrations
                 name: "DatosCuenta",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGeneratedOnAdd", true),
                     AccountId = table.Column<int>(nullable: false),
                     ApiKey = table.Column<string>(nullable: true),
                     ApiLogin = table.Column<string>(nullable: true),
                     Country = table.Column<string>(nullable: true),
                     MerchantId = table.Column<int>(nullable: false),
-                    NombreCuenta = table.Column<string>(nullable: true)
+                    NombreCuenta = table.Column<string>(nullable: true),
+                    Test = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DatosCuenta", x => x.id);
+                    table.PrimaryKey("PK_DatosCuenta", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -71,13 +74,14 @@ namespace AsopagosPayU.Migrations
                     CodigoReferencia = table.Column<string>(maxLength: 64, nullable: true),
                     Descripcion = table.Column<string>(maxLength: 512, nullable: true),
                     EstadoTransaccion = table.Column<string>(maxLength: 32, nullable: true),
+                    FechaTransaccion = table.Column<DateTime>(nullable: true),
                     MedioDePago = table.Column<string>(maxLength: 32, nullable: true),
                     Moneda = table.Column<string>(maxLength: 4, nullable: true),
                     Pais = table.Column<string>(maxLength: 4, nullable: true),
                     PayUTransaccionId = table.Column<string>(maxLength: 64, nullable: true),
-                    PorcentajeImpuesto = table.Column<decimal>(nullable: true),
-                    ValorImpuesto = table.Column<decimal>(nullable: true),
-                    ValorVenta = table.Column<decimal>(nullable: false)
+                    PorcentajeImpuesto = table.Column<decimal>(type: "decimal(18, 2)", nullable: true),
+                    ValorImpuesto = table.Column<decimal>(type: "decimal(18, 2)", nullable: true),
+                    ValorVenta = table.Column<decimal>(type: "decimal(18, 2)", nullable: false)
                 },
                 constraints: table =>
                 {

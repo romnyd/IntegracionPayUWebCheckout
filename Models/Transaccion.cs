@@ -39,14 +39,12 @@ namespace AsopagosPayU.Models
 
         [MaxLengthAttribute(4)]
         public string Pais { get; set; }
-
-        [ForeignKeyAttribute("Aplicativo_FK")]
+        
         public int AplicativoId { get; set; }
-        public Aplicativo Aplicativo { get; set; }
-
-        [ForeignKeyAttribute("Cliente_FK")]
+        public virtual Aplicativo Aplicativo { get; set; }
+        
         public int ClienteId { get; set; }        
-        public Cliente Cliente { get; set; }
+        public virtual Cliente Cliente { get; set; }
         public DateTime? FechaTransaccion { get; set; }
     }
 

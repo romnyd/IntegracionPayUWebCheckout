@@ -112,7 +112,8 @@ namespace AsopagosPayU.Controllers
         {            
             if (_servicioTransaccion.VerificarFirmaPayU(data, _servicioAplicativo.ObtenerApiKeyCuentaPayU(true)))
             {
-                _servicioTransaccion.ActualizarEstadoTransaccion(data);            
+                int idTransaccion = Int32.Parse(data.extra3);
+                _servicioTransaccion.ActualizarEstadoTransaccion(idTransaccion, data.lapPaymentMethod, data.transactionId, data.lapResponseCode);
                 ViewBag.EstadoTransaccion = _servicioTransaccion.ObtenerEstadoTransaccion(Int32.Parse(data.transactionState), data.lapResponseCode);
             } else {
                 ViewBag.EstadoTransaccion = "Hubo un problema de verificación de datos. Código: \"Firma-SHA-no-corresponde\"";
@@ -123,14 +124,43 @@ namespace AsopagosPayU.Controllers
 
         [HttpPost]
         [RouteAttribute("ConfirmationPagePayU")]
-        public IActionResult RecibirConfirmacionPayU(DatosRespuestaPayU data)
+        public IActionResult RecibirConfirmacionPayU(DatosConfirmacionPayU data)
         {
-            if (_servicioTransaccion.VerificarFirmaPayU(data, _servicioAplicativo.ObtenerApiKeyCuentaPayU(true)))
+            var c = new Cliente(){
+                ClienteEmail = "entro@mail.com",
+                ClienteNombre = data.extra3,
+                ClienteDireccionPrincipal = data.state_pol,
+                ClienteCiudad = data.sign,
+                ClienteTelefono = data.reference_sale,                
+            };
+            _servicioCliente.AgregarCliente(c);
+
+            if (_servicioTransaccion.VerificarFirmaPayUConfirmacion(data, _servicioAplicativo.ObtenerApiKeyCuentaPayU(true)))
             {
-                _servicioTransaccion.ActualizarEstadoTransaccion(data);            
-                ViewBag.EstadoTransaccion = _servicioTransaccion.ObtenerEstadoTransaccion(Int32.Parse(data.transactionState), data.lapResponseCode);
+                c = new Cliente(){
+                ClienteEmail = "firmacorrecta@mail.com",
+                ClienteNombre = data.extra3,
+                ClienteDireccionPrincipal = data.state_pol,
+                ClienteCiudad = data.sign,
+                ClienteTelefono = data.reference_sale,                
+            };
+            _servicioCliente.AgregarCliente(c);
+
+                int idTransaccion = Int32.Parse(data.extra3);                
+                _servicioTransaccion.ActualizarEstadoTransaccion(idTransaccion, data.payment_method_name, data.transaction_id, data.response_message_pol);            
+                ViewBag.EstadoTransaccion = _servicioTransaccion.ObtenerEstadoTransaccion(Int32.Parse(data.state_pol), data.response_message_pol);
             } else {
-                ViewBag.EstadoTransaccion = "Hubo un problema de verificación de datos. Código: \"Firma-SHA-no-corresponde\"";
+                c = new Cliente(){
+                ClienteEmail = "errorfirma@mail.com",
+                ClienteNombre = data.extra3,
+                ClienteDireccionPrincipal = data.state_pol,
+                ClienteCiudad = data.sign,
+                ClienteTelefono = data.reference_sale,                
+            };
+            _servicioCliente.AgregarCliente(c);
+
+                ViewBag.EstadoTransaccion = "Hubo un problema de verificación de datos. Código: \"Firma-SHA-no-corresponde\"";            
+            _servicioCliente.AgregarCliente(c);
             }
 
             return Ok();
