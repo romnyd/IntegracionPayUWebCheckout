@@ -27,6 +27,7 @@ namespace AsopagosPayU.Models
             // Conexión a SQL Lite
             //optionsBuilder.UseSqlite("Data Source=asopagospayu.db");        
         }
+
             
             
     }

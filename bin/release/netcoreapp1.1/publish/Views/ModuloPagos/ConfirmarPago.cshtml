@@ -1,0 +1,67 @@
+@model AsopagosPayU.Models.DatosEnvioPayU
+
+<div class="clearfix"></div>        
+
+<div class="table-responsive col-xs-10 col-xs-offset-1">
+
+<div class="pull-right "><a href="http://www.payulatam.com/logos/pol.php?l=150&c=59245e6618a4b" target="_blank">
+    <img src="http://www.payulatam.com/logos/logo.php?l=150&c=59245e6618a4b" 
+    alt="PayU Latam" border="0" /></a></div>
+    <div class="clearfix"></div>
+
+
+  <table class="table table-bordered table-striped">
+   <tr>
+       <td ><strong> Nombre completo</strong></td>
+       <td>@Model.buyerFullName</td>
+   </tr>
+ <tr>
+       <td><strong> Correo Electrónico</strong></td>
+       <td>@Model.buyerEmail</td>
+ </tr>
+ <tr>
+       <td><strong> Direccion</strong></td>
+       <td>@Model.shippingAdress</td>
+   </tr>
+   <tr>
+       <td><strong>Descripción</strong></td>
+       <td>@Model.description</td>
+   </tr>
+ <tr>
+       <td><strong>Monto</strong></td>
+       <td>@Model.amount <small>*IVA incluido</small></td>
+ </tr>
+ <tr>
+       <td><strong>Télefono del comprador</strong></td>
+       <td>@Model.telephone</td>
+   </tr>
+   
+  </table>
+
+<div class="text-center"> 
+    <form method="post" action="https://sandbox.gateway.payulatam.com/ppp-web-gateway/">
+        <input name="merchantId"    type="hidden"  value=@Model.merchantId   >
+        <input name="accountId"     type="hidden"  value=@Model.accountId >
+        <input name="description"   type="hidden"  value=@Model.description  >
+        <input name="referenceCode" type="hidden"  value=@Model.referenceCode >
+        <input name="amount"        type="hidden"  value=@Model.amount  >
+        <input name="tax"           type="hidden"  value=@Model.tax >
+        <input name="taxReturnBase" type="hidden"  value=@Model.taxReturnBase >
+        <input name="currency"      type="hidden"  value=@Model.currency >
+        <input name="algorithmSignature"    type="hidden"   value="SHA256" >
+        <input name="signature"     type="hidden"  value=@Model.signature  >  
+        <input name="test"          type="hidden"  value=@Model.test >
+        <input name="buyerEmail"    type="hidden"  value=@Model.buyerEmail >
+        <input name="responseUrl"    type="hidden"  value="http://localhost:5500/api/ModuloPagos/ResponsePagePayU" >
+        <input name="confirmationUrl"    type="hidden"  value="http://localhost:5500/api/ModuloPagos/ConfirmationPagePayU" >    
+        <input name="extra1"    type="hidden"  value=@Model.extra1 >
+        <input name="extra2"    type="hidden"  value=@Model.extra2 >
+        <input name="extra3"    type="hidden"  value=@Model.extra3 >
+        <input name="Submit"        type="submit"   value="Paga Seguro con PayU" class="btn btn-success center" >    
+    </form>
+</div>
+
+</div>
+
+
+

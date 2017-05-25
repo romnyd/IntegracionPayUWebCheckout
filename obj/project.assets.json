@@ -10053,16 +10053,16 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Felipe\\AsopagosPayU\\AsopagosPayU.csproj",
+      "projectUniqueName": "C:\\Users\\Felipe\\AsopagosPayU\\AsopagosPayU.csproj",
       "projectName": "AsopagosPayU",
-      "projectPath": "c:\\Users\\Felipe\\AsopagosPayU\\AsopagosPayU.csproj",
-      "outputPath": "c:\\Users\\Felipe\\AsopagosPayU\\obj\\",
+      "projectPath": "C:\\Users\\Felipe\\AsopagosPayU\\AsopagosPayU.csproj",
+      "outputPath": "C:\\Users\\Felipe\\AsopagosPayU\\obj\\",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netcoreapp1.1"
       ],
       "files": {
-        "lib/netcoreapp1.1/AsopagosPayU.dll": "c:\\Users\\Felipe\\AsopagosPayU\\bin\\placeholder\\netcoreapp1.1\\AsopagosPayU.dll"
+        "lib/netcoreapp1.1/AsopagosPayU.dll": "C:\\Users\\Felipe\\AsopagosPayU\\bin\\placeholder\\netcoreapp1.1\\AsopagosPayU.dll"
       },
       "frameworks": {
         "netcoreapp1.1": {
