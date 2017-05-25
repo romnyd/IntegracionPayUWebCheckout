@@ -17,14 +17,7 @@ namespace AsopagosPayU.Services
         }
 
         public void ActualizarEstadoTransaccion(int idTransaccion, string medioDePago, string payUidTransaccion, string estadoTransaccion)
-        {
-            // int idTransaccion = Int32.Parse(data.extra3);
-            // Transaccion transaccion = _repositorioTransaccion.ObtenerTransacionPorId(idTransaccion);
-
-            // transaccion.MedioDePago = data.lapPaymentMethod;
-            // transaccion.PayUTransaccionId = data.transactionId;
-            // transaccion.EstadoTransaccion = data.lapResponseCode;
-            
+        {   
             Transaccion transaccion = _repositorioTransaccion.ObtenerTransacionPorId(idTransaccion);
 
             transaccion.MedioDePago = medioDePago;

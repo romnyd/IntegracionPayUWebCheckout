@@ -126,48 +126,16 @@ namespace AsopagosPayU.Controllers
         [RouteAttribute("ConfirmationPagePayU")]
         public IActionResult RecibirConfirmacionPayU(DatosConfirmacionPayU data)
         {
-            var c = new Cliente(){
-                ClienteEmail = "entro@mail.com",
-                ClienteNombre = data.extra3,
-                ClienteDireccionPrincipal = data.state_pol,
-                ClienteCiudad = data.sign,
-                ClienteTelefono = data.reference_sale,                
-            };
-            _servicioCliente.AgregarCliente(c);
-
             if (_servicioTransaccion.VerificarFirmaPayUConfirmacion(data, _servicioAplicativo.ObtenerApiKeyCuentaPayU(true)))
-            {
-                c = new Cliente(){
-                ClienteEmail = "firmacorrecta@mail.com",
-                ClienteNombre = data.extra3,
-                ClienteDireccionPrincipal = data.state_pol,
-                ClienteCiudad = data.sign,
-                ClienteTelefono = data.reference_sale,                
-            };
-            _servicioCliente.AgregarCliente(c);
-
+            {            
                 int idTransaccion = Int32.Parse(data.extra3);                
                 _servicioTransaccion.ActualizarEstadoTransaccion(idTransaccion, data.payment_method_name, data.transaction_id, data.response_message_pol);            
                 ViewBag.EstadoTransaccion = _servicioTransaccion.ObtenerEstadoTransaccion(Int32.Parse(data.state_pol), data.response_message_pol);
             } else {
-                c = new Cliente(){
-                ClienteEmail = "errorfirma@mail.com",
-                ClienteNombre = data.extra3,
-                ClienteDireccionPrincipal = data.state_pol,
-                ClienteCiudad = data.sign,
-                ClienteTelefono = data.reference_sale,                
-            };
-            _servicioCliente.AgregarCliente(c);
-
-                ViewBag.EstadoTransaccion = "Hubo un problema de verificación de datos. Código: \"Firma-SHA-no-corresponde\"";            
-            _servicioCliente.AgregarCliente(c);
+                ViewBag.EstadoTransaccion = "Hubo un problema de verificación de datos. Código: \"Firma-no-corresponde\"";            
             }
-
             return Ok();
         }    
-
-
-
 
     }
 }
