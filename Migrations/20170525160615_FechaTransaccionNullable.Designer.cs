@@ -8,9 +8,10 @@ using AsopagosPayU.Models;
 namespace AsopagosPayU.Migrations
 {
     [DbContext(typeof(Contexto))]
-    partial class ContextoModelSnapshot : ModelSnapshot
+    [Migration("20170525160615_FechaTransaccionNullable")]
+    partial class FechaTransaccionNullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2");

@@ -31,7 +31,9 @@ namespace AsopagosPayU
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<Contexto>(x => x.UseMySql("server=localhost;database=ASOPAGOSPAYU;uid=root;pwd=123456"));
+            services.AddDbContext<Contexto>(x => x.UseMySql("server=www.asopagos.com;database=asopagos_legalAsop;uid=asopagos_fredyv;pwd=3ewiQm7u"));
+            // services.AddDbContext<Contexto>(x => x.UseMySql("server=localhost;database=ASOPAGOSPAYU;uid=root;pwd=123456"));
+            // services.AddDbContext<Contexto>(x => x.UseSqlite("Data Source=asopagospayu.db"));
             // Add framework services.
             services.AddMvc();
 

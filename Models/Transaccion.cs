@@ -24,7 +24,7 @@ namespace AsopagosPayU.Models
 
         [MaxLengthAttribute(512)]
         public string Descripcion { get; set; }
-
+        
         public decimal ValorVenta { get; set; }
 
         public decimal? ValorImpuesto { get; set; }
@@ -47,7 +47,7 @@ namespace AsopagosPayU.Models
         [ForeignKeyAttribute("Cliente_FK")]
         public int ClienteId { get; set; }        
         public Cliente Cliente { get; set; }
-        public DateTime FechaTransaccion { get; set; }
+        public DateTime? FechaTransaccion { get; set; }
     }
 
 }

@@ -15,8 +15,7 @@ namespace AsopagosPayU
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()                
-                .UseStartup<Startup>()
-                .UseUrls("http://localhost:5500/")
+                .UseStartup<Startup>()                
                 .Build();
 
             host.Run();

@@ -8,9 +8,10 @@ using AsopagosPayU.Models;
 namespace AsopagosPayU.Migrations
 {
     [DbContext(typeof(Contexto))]
-    partial class ContextoModelSnapshot : ModelSnapshot
+    [Migration("20170525155651_PrecisionDosDecimales")]
+    partial class PrecisionDosDecimales
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2");
@@ -111,7 +112,7 @@ namespace AsopagosPayU.Migrations
                     b.Property<string>("EstadoTransaccion")
                         .HasMaxLength(32);
 
-                    b.Property<DateTime?>("FechaTransaccion");
+                    b.Property<DateTime>("FechaTransaccion");
 
                     b.Property<string>("MedioDePago")
                         .HasMaxLength(32);
@@ -125,11 +126,9 @@ namespace AsopagosPayU.Migrations
                     b.Property<string>("PayUTransaccionId")
                         .HasMaxLength(64);
 
-                    b.Property<decimal?>("PorcentajeImpuesto")
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<decimal?>("PorcentajeImpuesto");
 
-                    b.Property<decimal?>("ValorImpuesto")
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<decimal?>("ValorImpuesto");
 
                     b.Property<decimal>("ValorVenta")
                         .HasColumnType("decimal(18, 2)");
